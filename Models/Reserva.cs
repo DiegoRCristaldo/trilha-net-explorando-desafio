@@ -15,16 +15,14 @@ namespace DesafioProjetoHospedagem.Models
 
         public void CadastrarHospedes(List<Pessoa> hospedes)
         {
-            // TODO: Verificar se a capacidade é maior ou igual ao número de hóspedes sendo recebido
-            // *IMPLEMENTE AQUI*
-            if (true)
-            {
+            //Verificar se a capacidade é maior ou igual ao número de hóspedes sendo recebido
+            bool capacidadePermitida = Suite.Capacidade >= hospedes.Count;
+            if(capacidadePermitida){
                 Hospedes = hospedes;
             }
-            else
-            {
-                // TODO: Retornar uma exception caso a capacidade seja menor que o número de hóspedes recebido
-                // *IMPLEMENTE AQUI*
+
+            else{
+                throw new Exception("O número de hospedes é maior que a capacidade da suite no momneto.");
             }
         }
 
@@ -35,26 +33,27 @@ namespace DesafioProjetoHospedagem.Models
 
         public int ObterQuantidadeHospedes()
         {
-            // TODO: Retorna a quantidade de hóspedes (propriedade Hospedes)
-            // *IMPLEMENTE AQUI*
-            return 0;
+            // Retorna a quantidade de hóspedes (propriedade Hospedes)
+            int i = 0;
+            while(i < Hospedes.Count){
+                i++;
+            }
+            return i;
         }
 
         public decimal CalcularValorDiaria()
         {
-            // TODO: Retorna o valor da diária
-            // Cálculo: DiasReservados X Suite.ValorDiaria
-            // *IMPLEMENTE AQUI*
-            decimal valor = 0;
+            // Retorna o valor da diária
+            decimal valorDaDiaria = DiasReservados * Suite.ValorDiaria;
 
-            // Regra: Caso os dias reservados forem maior ou igual a 10, conceder um desconto de 10%
-            // *IMPLEMENTE AQUI*
-            if (true)
+            // Caso os dias reservados forem maior ou igual a 10, conceder um desconto de 10%
+            bool desconto = DiasReservados >= 10;
+            if (desconto)
             {
-                valor = 0;
+                valorDaDiaria = valorDaDiaria - (valorDaDiaria / 10);
             }
 
-            return valor;
+            return valorDaDiaria;
         }
     }
 }
